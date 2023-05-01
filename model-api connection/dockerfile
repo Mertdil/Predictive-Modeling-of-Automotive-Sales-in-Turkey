@@ -1,0 +1,20 @@
+# base image
+FROM python:3.8-slim-buster
+
+# set working directory
+WORKDIR /app
+
+# copy necessary files to the container
+COPY model-api.py /app/model-api.py
+COPY requirements.txt /app/requirements.txt
+COPY Veri-Seti.xlsx /app/Veri-Seti.xlsx
+
+# install required libraries
+RUN pip install  -r requirements.txt
+
+# Expose port for API
+EXPOSE 8080
+
+# command to run the application
+
+CMD ["python", "model-api.py"]
